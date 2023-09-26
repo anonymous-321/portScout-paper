@@ -77,7 +77,7 @@ print(f"Total time taken: {total_time} seconds")
 
 
 
-
+#single thread
 # # Define the list of pcap files
 # pcap_files = [
 #     '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic.pcap',
@@ -85,9 +85,6 @@ print(f"Total time taken: {total_time} seconds")
 #     '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic2.pcap',
 #     '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic3.pcap'
 # ]
-
-# # Define the destination IP address
-# destination_ip = '192.168.18.179'
 
 # # Initialize a dictionary to store packet counts for each file
 # packet_counts = {}

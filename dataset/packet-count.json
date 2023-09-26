@@ -1,0 +1,70 @@
+{
+  "packet_count": {
+    "enignTraffic.pcap": "3664164 packets",
+    "enignTraffic1.pcap": "2988642 packets",
+    "enignTraffic2.pcap": "3138002 packets",
+    "enignTraffic3.pcap": "1311897 packets",
+    "total": "11072705 packets"
+  },
+  "packet_protocols_count": {
+    "ARP": "266352 packets",
+    "ICMP": "92149 packets",
+    "TCP": "8938344 packets",
+    "UDP": "1711872 packets",
+    "Other": "93988 packets"
+  },
+  
+  "Unique Source IPs Count": "1810",
+  "Unique Destination IPs Count": "1821",
+  "Unique Source Ports Count": "41745",
+  "Unique Destination Ports Count": "41897",
+
+  "Top 10 Source IPs": {
+    "192.168.137.175": "2638075 packets",
+    "192.168.137.46": "693833 packets",
+    "35.185.101.66": "681681 packets",
+    "192.168.137.172": "332632 packets",
+    "192.168.137.58": "279800 packets",
+    "192.168.137.41": "256847 packets",
+    "192.168.137.207": "199105 packets",
+    "74.125.0.107": "185603 packets",
+    "157.249.81.141": "161491 packets",
+    "192.168.137.1": "152321 packets"
+  },
+  "Top 10 Destination IPs": {
+    "192.168.137.175": "2404896 packets",
+    "35.185.101.66": "693771 packets",
+    "192.168.137.46": "681730 packets",
+    "255.255.255.255": "394356 packets",
+    "192.168.137.58": "305980 packets",
+    "192.168.137.172": "290251 packets",
+    "192.168.137.41": "248154 packets",
+    "192.168.137.1": "230564 packets",
+    "192.168.137.207": "213542 packets",
+    "74.125.0.107": "177730 packets"
+  },
+  "Top Source Ports": {
+    "443": "3658300 packets",
+    "55444": "438315 packets",
+    "80": "309894 packets",
+    "41206": "291206 packets",
+    "57480": "269854 packets",
+    "49154": "180998 packets",
+    "53": "165663 packets",
+    "48335": "132784 packets",
+    "32100": "98829 packets",
+    "5353": "83501 packets"
+  },
+  "Top Destination Ports": {
+    "443": "3955315 packets",
+    "55444": "438314 packets",
+    "6667": "355110 packets",
+    "80": "325941 packets",
+    "41206": "287398 packets",
+    "57480": "266421 packets",
+    "53": "163743 packets",
+    "48335": "127949 packets",
+    "32100": "99856 packets",
+    "5353": "83970 packets"
+  }
+}
