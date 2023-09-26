@@ -1,5 +1,9 @@
 from scapy.all import PcapReader
 import threading
+import time
+
+# Record the start time
+start_time = time.time()
 
 # Define the list of pcap files
 pcap_files = [
@@ -50,6 +54,12 @@ for thread in threads:
 for pcap_file, count in packet_counts.items():
     print(f"{pcap_file}: {count} packets")
 
+# Calculate the total time taken
+end_time = time.time()
+total_time = end_time - start_time
+
+# Print the total time taken
+print(f"Total time taken: {total_time} seconds")
 
 
 
