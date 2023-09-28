@@ -13,11 +13,12 @@
     "UDP": "1711872 packets",
     "Other": "93988 packets"
   },
-  
+
   "Unique Source IPs Count": "1810",
   "Unique Destination IPs Count": "1821",
   "Unique Source Ports Count": "41745",
   "Unique Destination Ports Count": "41897",
+  "Total packets with source and destination IPs in the '192.168.137' subnet": "1066409",
 
   "Top 10 Source IPs": {
     "192.168.137.175": "2638075 packets",
