@@ -1,4 +1,3 @@
-from scapy.all import PcapReader
 from scapy.all import PcapReader, IP, TCP
 from scapy.all import *
 
@@ -43,8 +42,6 @@ if __name__ == "__main__":
         for packet in pcap_reader:
             if 'IP' in packet:
                 detect_scan(packet)
-                # detect_scan(extract_packet_info(packet))
-                # extract_packet_info(packet)
 
     print("-----------------------------------------------------------------------------------------------------------------------")
     print(error_packets)
