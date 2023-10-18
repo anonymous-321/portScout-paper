@@ -6,6 +6,13 @@
     "enignTraffic3.pcap": "1311897 packets",
     "total": "11072705 packets"
   },
+  "time_duration":{
+    "enignTraffic.pcap":  "33327.968613 seconds = 555.47 minutes = 9.2577 hours",
+    "enignTraffic1.pcap": "29092.705957 seconds = 484.88 minutes = 8.0808 hours",
+    "enignTraffic2.pcap": "28920.001260 seconds = 482 minutes = 8.0333 hours",
+    "enignTraffic3.pcap": "12460.031496 seconds = 207.6670 minutes = 3.4617 hours",
+    "total": "103800.706326 seconds = 1730.0151 minutes = 28.8336 hours"
+  },
   "packet_protocols_count": {
     "ARP": "266352 packets",
     "ICMP": "92149 packets",
