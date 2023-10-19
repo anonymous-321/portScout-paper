@@ -8,7 +8,7 @@ packets = []
 def extract_packet_data(packet):
     try:
 
-        src_ip = dst_ip = src_port = dst_port = timestamp = ""
+        src_ip = dst_ip = src_port = dst_port = ""
 
         # packet.show()
 
@@ -140,6 +140,7 @@ def check_area(ppi, spd):
     
 if __name__=="__main__":
 
+    # print(check_area(0.31,3))
     # Replace 'pcap_file' with the path to your pcap file
     pcap_file = '/home/khattak01/Desktop/thesis/tests/packets-500.pcap'
 
