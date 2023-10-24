@@ -5,8 +5,19 @@ from scapy.all import *
 
 
 from pyspark import SparkContext, SparkConf
+from pyspark.sql import SparkSession
 
-from util import get_time
+import datetime
+
+def format_time(timestamp):
+  # Convert the timestamp to a datetime object
+  return datetime.datetime.fromtimestamp(timestamp).strftime("%Y-%m-%d %H:%M:%S")
+  
+  # Format the datetime object as a string
+  # return dt.strftime("%Y-%m-%d %H:%M:%S")
+
+def get_time():
+  return datetime.datetime.now().timestamp()
 
 # Define parameters
 time_threshold = 30 #30 seconds
@@ -14,7 +25,14 @@ threshold = 100
 
 anomalous_ips = set()
 
+# Create a Spark session
+conf = SparkConf().setAppName("FlowProcessing")
+sc = SparkContext(conf=conf)
+spark = SparkSession(sc)
+
 packets = []
+packets_rdd = sc.parallelize([])  # Initialize an empty RDD
+
 
 # Define the format_packet_data function
 def extract_packet_data(packet):
@@ -56,6 +74,8 @@ def extract_packet_data(packet):
 tmp = 0
 def process_packet(packet):
     global tmp
+    global packets_rdd  # Access the global RDD
+
     
     # tmp+=1
 
@@ -67,42 +87,35 @@ def process_packet(packet):
 
     # Process flow-level data
     packet = extract_packet_data(packet)
-    packets.append(packet)
+    # packets.append(packet)
+    packet_rdd = sc.parallelize([packet])
+    # Add the packet data to the global RDD
+    packets_rdd = packets_rdd.union(packet_rdd)
 
+    # Create an RDD from the 'packets' list
 
     # tmp+=1
     # print("tmp >>> ",tmp)
     
     # Check if packet's entry is already in the packets list and if the time difference is less than 30 seconds
     current_time = get_time()
-    # print(packet['timestamp'])
-    # print(current_time)
-    # print((current_time - packet['timestamp']))
-    print(time_threshold)
-    time_threshold_packets = [pkt for pkt in packets if pkt['src_ip'] == packet['src_ip'] and 
-                         (current_time - pkt['timestamp']) < time_threshold]
-    # print(len(matching_packets))
-    # return
 
-    if time_threshold_packets:
-        for pkt in time_threshold_packets:
-            # Check if both source and destination IPs start with "192.168.137."
-            if pkt['src_ip'].startswith("192.168.137.") and pkt['dst_ip'].startswith("192.168.137."):
-                pass
-            
-            if pkt['src_ip'] == packet['src_ip']:
-                ip_outgoing_flows_count.append(packet)
-            
-            if pkt['dst_ip'] == packet['src_ip']:
-                ip_incoming_flows_count.append(packet)
 
-        # elif packet['dst_ip'].startswith("192.168.137."):
-        #         # packet.flow = "incoming"
-        #     incoming_flows.append(packet)
+    # Filter packets with matching source IP and a time difference less than 'time_threshold' seconds
+    matching_packets = packets_rdd.filter(
+        lambda pkt: pkt['src_ip'] == packet['src_ip'] and (current_time - pkt['timestamp']) < time_threshold
+    )
 
-        # elif packet['src_ip'].startswith("192.168.137."):
-        #     # packet.flow = "outgoing"
-        #     outgoing_flows.append(packet)
+    print("matching_packets >>> ", len(matching_packets.collect()))
+    # Extract IP counts based on filtered packets
+    for pkt in matching_packets.collect():
+        if pkt['dst_ip'].startswith("192.168.137.") and pkt['src_ip'].startswith("192.168.137."):
+            pass
+        if pkt['src_ip'] == packet['src_ip']:
+            ip_outgoing_flows_count.append(pkt)
+        if pkt['dst_ip'] == packet['src_ip']:
+            ip_incoming_flows_count.append(pkt)
+
 
     ratio = 0
     if len(ip_incoming_flows_count) >= len(ip_outgoing_flows_count):
@@ -127,12 +140,12 @@ if __name__ == "__main__":
     # Replace 'pcap_file' with the path to your pcap file
     pcap_file = '/home/khattak01/Desktop/thesis/tests/packets-500.pcap'
 
-    packets_list = []
-
     # Open the pcap file using PcapReader
     with PcapReader(pcap_file) as pcap_reader:
         # Loop through packets
+            
         for packet in pcap_reader:
+
             process_packet(packet)
             # time.sleep(1)
 

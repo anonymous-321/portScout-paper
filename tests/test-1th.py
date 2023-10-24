@@ -1,76 +1,65 @@
-from pyspark.sql import SparkSession
-from scapy.all import PcapReader
-from collections import defaultdict
+from pyspark import SparkConf, SparkContext
 
-# Create a SparkSession
-spark = SparkSession.builder.appName("PacketProcessing").getOrCreate()
+# Create a SparkConf and SparkContext
+conf = SparkConf().setAppName("AddingDataToRDD")
+sc = SparkContext(conf=conf)
 
-# Define parameters
-# time_interval = timedelta(seconds=30)
-# threshold = 0.8
+# Create an initial RDD
+initial_data = [
+    {
+        "src_ip": "192.168.1.1",
+        "dst_ip": "192.168.1.2",
+        "src_port": 12345,
+        "dst_port": 80,
+    },
+    {
+        "src_ip": "192.168.1.3",
+        "dst_ip": "192.168.1.4",
+        "src_port": 54321,
+        "dst_port": 8080,
+    },
+]
 
-# Create dictionaries to store flow counts and anomalous IPs
-flow_counts = defaultdict(int)
-incoming_flows = []
-outgoing_flows = []
-anomalous_ips = set()
+initial_rdd = sc.parallelize(initial_data)
 
-# Replace 'pcap_file' with the path to your pcap file
-pcap_file = '/home/khattak01/Desktop/thesis/tests/packets-500.pcap'
+# Create a list of dictionaries to add
+new_dicts = [
+    {
+        "src_ip": "192.168.1.5",
+        "dst_ip": "192.168.1.6",
+        "src_port": 54322,
+        "dst_port": 8081,
+    },
+    {
+        "src_ip": "192.168.1.7",
+        "dst_ip": "192.168.1.8",
+        "src_port": 54323,
+        "dst_port": 8082,
+    },
+    {
+        "src_ip": "192.168.1.9",
+        "dst_ip": "192.168.1.10",
+        "src_port": 54324,
+        "dst_port": 8083,
+    },
+]
 
-# Read the pcap file using PySpark
-packets_rdd = spark.sparkContext.binaryFiles(pcap_file).flatMap(lambda x: PcapReader(x[1]))
-
-# Define the format_packet_data function
-def extract_packet_data(packet):
-    try:
-        src_ip = dst_ip = src_port = dst_port = ""
-        protocol = "Unknown"
-
-        if IP in packet:
-            src_ip = packet[IP].src
-            dst_ip = packet[IP].dst
-
-        if TCP in packet:
-            protocol = "TCP"
-            src_port = packet[TCP].sport
-            dst_port = packet[TCP].dport
-        elif UDP in packet:
-            protocol = "UDP"
-            src_port = packet[UDP].sport
-            dst_port = packet[UDP].dport
-        elif SCTP in packet:
-            protocol = "SCTP"
-            src_port = packet[SCTP].sport
-            dst_port = packet[SCTP].dport
-
-        timestamp = str(get_time())
-
-        return {
-            "src_ip": src_ip,
-            "dst_ip": dst_ip,
-            "src_port": src_port,
-            "dst_port": dst_port,
-            "protocol": protocol,
-            "timestamp": timestamp,
-        }
-    except Exception as e:
-        print(f"Error extracting packet data: {e}")
-
-def process_packet(packet):
-    global flow_counts, incoming_flows, outgoing_flows, anomalous_ips
-
-    # Process flow-level data
-    packet_data = extract_packet_data(packet)
-
-    # Your flow-level processing logic here
-    # Update dictionaries and perform checks
-
-# Apply the process_packet function to each packet in parallel
-packets_rdd.foreach(process_packet)
-
-# Stop the SparkSession
-spark.stop()
+# Define a function to append data to an RDD
+def append_data(data):
+    # This function takes an RDD element and appends the new data to it
+    # Merge the data dictionary with each new_dict in the list of dictionaries
+    return [dict(data, **new_dict) for new_dict in new_dicts]
 
 
+# Use the flatMap transformation to append data to the initial RDD
+combined_rdd = initial_rdd.flatMap(append_data)
 
+# Perform calculations on the combined RDD
+# For example, calculate the total number of records
+total_records = combined_rdd.count()
+
+# Collect and print the result
+print("Total Records:", total_records)
+
+# Stop the SparkContext
+sc.stop()
