@@ -30,7 +30,7 @@ if __name__ == "__main__":
     # extract_and_save_packets("input.pcap", "output.pcap", num_packets=500)
 
     # Call the function to extract and save packets
-    num_packets = 500  # Specify the number of packets to extract (optional, default is 500)
+    num_packets = 10000  # Specify the number of packets to extract (optional, default is 500)
     input_pcap_file = "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic.pcap"  # Replace with the path to input PCAP file
     output_pcap_file = f"packets-{num_packets}.pcap"  # Replace with the desired path for the output PCAP file
 
