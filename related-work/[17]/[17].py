@@ -7,7 +7,7 @@ packets = []
 # Define the format_packet_data function
 def extract_packet_data(packet):
     try:
-        src_ip = dst_ip = src_port = dst_port = ""
+        src_ip = dst_ip = tcp_flags = ""
         protocol = "Unknown"
         # packet.show()
 
@@ -17,25 +17,16 @@ def extract_packet_data(packet):
 
         if TCP in packet:
             protocol = "TCP"
-            src_port = packet[TCP].sport
-            dst_port = packet[TCP].dport
-        elif UDP in packet:
-            protocol = "UDP"
-            src_port = packet[UDP].sport
-            dst_port = packet[UDP].dport
-        elif SCTP in packet:
-            protocol = "SCTP"
-            src_port = packet[SCTP].sport
-            dst_port = packet[SCTP].dport   
+            tcp_flags = packet[TCP].sprintf('%flags%')
 
-        timestamp = get_time()
+        
+        timestamp = float(packet.time)
 
         return {
             "src_ip": src_ip,
             "dst_ip": dst_ip,
-            "src_port": src_port,
-            "dst_port": dst_port,
             "protocol":protocol,
+            "tcp_flags":tcp_flags,
             "timestamp": timestamp,
         }   
     

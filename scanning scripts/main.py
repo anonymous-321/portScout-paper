@@ -9,6 +9,7 @@ from tcp_ack import tcp_ack
 from tcp_maimon import tcp_maimon
 from tcp_custom_scan import tcp_custom_scan
 
+from nmap_top_ports import nmap_top_tcp_ports
 from top_ports import top_tcp_ports
 from top_ports import top_udp_ports
 
@@ -36,10 +37,20 @@ if __name__ == "__main__":
     # print(len(top_tcp_ports))
     # print(len(top_udp_ports))
     
-    max_threads = 120  # Maximum number of threads
+    max_threads = 5  # Maximum number of threads
 
     with ThreadPoolExecutor(max_threads) as executor:
-        executor.map(scan_port, top_tcp_ports)
+        executor.map(scan_port, nmap_top_tcp_ports)
+
+    # max_threads = 5  # Maximum number of threads
+    # port_range_start = 1000
+    # port_range_end = 6000  # Adjust the end port as needed
+
+    # for i in range(port_range_start,port_range_end+1):
+    #     scan_port(i)
+
+    # with ThreadPoolExecutor(max_threads) as executor:
+    #     executor.submit(scan_port, port_range_start, port_range_end)
     
 
     # with ThreadPoolExecutor(max_threads) as executor:
