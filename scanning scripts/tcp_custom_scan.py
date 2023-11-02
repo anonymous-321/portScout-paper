@@ -1,12 +1,19 @@
 from scapy.all import *
 
+import random
+
+port_range = range(1024, 49152)
+# Generate a random source port from the defined range.
+
 def tcp_custom_scan(target_ip, target_port):
     try:
+        source_port = random.choice(port_range)
+        # source_port = 12345
         # Craft a TCP packet with arbitrary flag combinations
-        tcp_packet = IP(dst=target_ip) / TCP(dport=target_port, flags="FSRPAU")
+        tcp_packet = IP(dst=target_ip) / TCP(sport=source_port, dport=target_port, flags="FSRPAU")
 
         # Send the Maimon Scan packet and receive the response
-        response = sr1(tcp_packet, timeout=2, verbose=0)
+        response = sr1(tcp_packet, timeout=.5, verbose=0)
 
         # Check the response
         if response is not None:

@@ -1,12 +1,20 @@
 from scapy.all import TCP,IP, sr1
+import random
+
+# Define a range for random ports (e.g., 1024-49151).
+port_range = range(1024, 49152)
 
 #SYN scan is the most popular scan option for good reason. It can be performed quickly, 
 # scanning thousands of ports per second on a fast network not hampered by intrusive firewalls. 
 # SYN scan is relatively unobtrusive and stealthy, since it never completes TCP connections. 
 def tcp_syn(target_ip, target_port):
     try:
+
+        # Generate a random source port from the defined range.
+        source_port = random.choice(port_range)
+
         # Craft a TCP SYN packet
-        syn_packet = IP(dst=target_ip) / TCP(dport=target_port, flags="S")
+        syn_packet = IP(dst=target_ip) / TCP(sport=source_port,dport=target_port, flags="S")
 
         # Send the packet and receive the response
         response = sr1(syn_packet, timeout=1, verbose=0)

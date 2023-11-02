@@ -15,20 +15,23 @@ from top_ports import top_udp_ports
 
 from concurrent.futures import ThreadPoolExecutor
 
+def generate_int_array(start, end):
+    return list(range(start, end + 1))
+
 
 target_ip = '192.168.18.179'
 
 def scan_port(port):
-    tcp_syn(target_ip, port)
+    # tcp_syn(target_ip, port)
     # tcp_connect(target_ip, port)
-    # udp_scan(target_ip, port)
-    # sctp_init(target_ip, port)
     # tcp_null(target_ip,port)
     # tcp_fin(target_ip,port)
     # tcp_xmas(target_ip,port)
     # tcp_ack(target_ip,port)
     # tcp_maimon(target_ip,port)
     # tcp_custom_scan(target_ip,port)
+    # sctp_init(target_ip, port)
+    udp_scan(target_ip, port)
     
 
 
@@ -37,10 +40,14 @@ if __name__ == "__main__":
     # print(len(top_tcp_ports))
     # print(len(top_udp_ports))
     
-    max_threads = 5  # Maximum number of threads
+    max_threads = 50  # Maximum number of threads
+
+    start_num = 1
+    end_num = 5000
+    ports_array_1000_6000 = generate_int_array(start_num, end_num)
 
     with ThreadPoolExecutor(max_threads) as executor:
-        executor.map(scan_port, nmap_top_tcp_ports)
+        executor.map(scan_port, ports_array_1000_6000)
 
     # max_threads = 5  # Maximum number of threads
     # port_range_start = 1000

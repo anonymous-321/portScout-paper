@@ -1,9 +1,18 @@
 from scapy.all import *
 
+import random
+
+port_range = range(1024, 49152)
+
 def tcp_xmas(target_ip, target_port):
     try:
+
+       # Generate a random source port from the defined range.
+        # source_port = random.choice(port_range)
+        source_port = 9821
+
         # Craft a TCP packet with the FIN, URG, and PSH flags set (XMAS scan)
-        tcp_packet = IP(dst=target_ip) / TCP(dport=target_port, flags="FPU")
+        tcp_packet = IP(dst=target_ip) / TCP(sport=source_port,dport=target_port, flags="FPU")
 
         # Send the XMAS scan packet and receive the response
         response = sr1(tcp_packet, timeout=1, verbose=0)
@@ -15,10 +24,10 @@ def tcp_xmas(target_ip, target_port):
                     pass
                     # print(f"Port {target_port} is closed")
                 elif response[TCP].flags == 0x04:  # RST (port is open)
-                    print(f"Port {target_port} is open")
+                    print(f"Port {target_port} is unknown")
                 else:
                     pass
-                    # print(f"Port {target_port} state is unknown")
+                    # print(f"Port {target_port} state is Open")
             else:
                 pass
                 # print(f"Port {target_port} state is unknown")

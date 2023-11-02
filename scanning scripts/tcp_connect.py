@@ -11,7 +11,7 @@ def tcp_connect(target_ip, target_port):
         sock.settimeout(1)
         
         # Attempt to connect to the target
-        result = sock.connect_ex((target_ip, target_port))
+        result = sock.connect_ex((target_ip, target_port,))
         
         # Check the result of the connection attempt
         if result == 0:
