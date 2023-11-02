@@ -40,10 +40,10 @@ if __name__ == "__main__":
     # print(len(top_tcp_ports))
     # print(len(top_udp_ports))
     
-    max_threads = 50  # Maximum number of threads
+    max_threads = 60  # Maximum number of threads
 
-    start_num = 1
-    end_num = 5000
+    start_num = 1000
+    end_num = 6000
     ports_array_1000_6000 = generate_int_array(start_num, end_num)
 
     with ThreadPoolExecutor(max_threads) as executor:

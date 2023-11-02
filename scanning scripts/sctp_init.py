@@ -8,8 +8,8 @@ port_range = range(1024, 49152)
 def sctp_init(target_ip, target_port):
     try:
 
-        # source_port = random.choice(port_range)
-        source_port = 1234
+        source_port = random.choice(port_range)
+        # source_port = 1234
         # Craft an SCTP INIT packet for the connection attempt
         sctp_init_packet = IP(dst=target_ip) / SCTP(sport=source_port,dport=target_port)
 

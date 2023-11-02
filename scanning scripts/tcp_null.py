@@ -6,13 +6,12 @@ port_range = range(1024, 49152)
 
 def tcp_null(target_ip, target_port):
     try:
-
-
+        
         # Generate a random source port from the defined range.
         # source_port = random.choice(port_range)
-
+        source_port = 1111
         # Craft a TCP packet with no flags set (null scan)
-        tcp_packet = IP(dst=target_ip) / TCP(sport=1122,dport=target_port, flags="")
+        tcp_packet = IP(dst=target_ip) / TCP(sport=source_port,dport=target_port, flags="")
 
         # Send the null scan packet and receive the response
         response = sr1(tcp_packet, timeout=1, verbose=0)
