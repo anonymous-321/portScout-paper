@@ -7,8 +7,8 @@ port_range = range(1024, 49152)
 def tcp_ack(target_ip, target_port):
     try:
         # Generate a random source port from the defined range.
-        source_port = random.choice(port_range)
-        # source_port = 24
+        # source_port = random.choice(port_range)
+        source_port = 24
 
         # Craft a TCP packet with only the ACK flag set (ACK scan)
         tcp_packet = IP(dst=target_ip) / TCP(sport=source_port,dport=target_port, flags="A")

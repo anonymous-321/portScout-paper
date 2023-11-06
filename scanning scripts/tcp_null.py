@@ -8,8 +8,8 @@ def tcp_null(target_ip, target_port):
     try:
         
         # Generate a random source port from the defined range.
-        # source_port = random.choice(port_range)
-        source_port = 1111
+        source_port = random.choice(port_range)
+        # source_port = 1111
         # Craft a TCP packet with no flags set (null scan)
         tcp_packet = IP(dst=target_ip) / TCP(sport=source_port,dport=target_port, flags="")
 

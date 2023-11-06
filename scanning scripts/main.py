@@ -14,10 +14,17 @@ from top_ports import top_tcp_ports
 from top_ports import top_udp_ports
 
 from concurrent.futures import ThreadPoolExecutor
+import random
 
 def generate_int_array(start, end):
     return list(range(start, end + 1))
 
+# Function to decide on the source port
+def select_source_port():
+    if random.choice([True, False]):  # Randomly choose between static and dynamic source port
+        return random.randint(1024, 65535)  # Dynamic source port range
+    else:
+        return 12345  # Static source port
 
 target_ip = '192.168.18.179'
 

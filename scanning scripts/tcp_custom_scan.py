@@ -7,8 +7,8 @@ port_range = range(1024, 49152)
 
 def tcp_custom_scan(target_ip, target_port):
     try:
-        # source_port = random.choice(port_range)
-        source_port = 258
+        source_port = random.choice(port_range)
+        # source_port = 258
         # Craft a TCP packet with arbitrary flag combinations
         tcp_packet = IP(dst=target_ip) / TCP(sport=source_port, dport=target_port, flags="FSRPAU")
 
