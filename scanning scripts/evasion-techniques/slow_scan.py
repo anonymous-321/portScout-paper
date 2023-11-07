@@ -59,7 +59,7 @@ if __name__ == "__main__":
     random_ports.add(8002)
 
     flg = 0
-    random_number = random.randint(20, 30)
+    random_number = random.randint(5, 10)
     # random_number = 5
     p = 0
     for port in random_ports:
@@ -70,7 +70,7 @@ if __name__ == "__main__":
             flg = 0
             random_number = random.randint(20, 30)
 
-            random_delay = random.uniform(1, 10)
+            random_delay = random.uniform(10, 30)
             
             print(f"Waiting for {random_delay:.2f} seconds...")
             print("ports scanned >>>",p)
