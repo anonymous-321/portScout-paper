@@ -191,10 +191,10 @@ if __name__ == "__main__":
              '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic2.pcap',
              '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic3.pcap']
 
-    # files =  ['/home/khattak01/Desktop/thesis/tests/packets-10000-1.pcap',
-    #           '/home/khattak01/Desktop/thesis/tests/packets-10000-2.pcap',
-    #           '/home/khattak01/Desktop/thesis/tests/packets-10000-3.pcap',
-    #           '/home/khattak01/Desktop/thesis/tests/packets-10000-4.pcap']
+    files =  ['/home/khattak01/Desktop/thesis/tests/packets-10000-1.pcap',
+              '/home/khattak01/Desktop/thesis/tests/packets-10000-2.pcap',
+              '/home/khattak01/Desktop/thesis/tests/packets-10000-3.pcap',
+              '/home/khattak01/Desktop/thesis/tests/packets-10000-4.pcap']
     
     # files = ["dataset/scans-traffic/filtered-traffic/ubuntu-traffic/evasion-technique-modified-traffic/slow-scan/filtered_slow-scan-1000ports-ramdom-pkts(20-30)-radom-delay1-10s.pcap"]
     
