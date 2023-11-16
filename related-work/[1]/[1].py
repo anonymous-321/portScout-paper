@@ -1,10 +1,11 @@
-
-
 from scapy.all import PcapReader
 from scapy.all import *
 
-
 import datetime
+import json
+import os
+import psutil
+import threading
 
 def format_time(timestamp):
   # Convert the timestamp to a datetime object
@@ -16,10 +17,29 @@ def format_time(timestamp):
 def get_time():
   return datetime.datetime.now().timestamp()
 
+def update_alert_ips(ip):
+    # Load existing data from the JSON file if it exists
+    json_file_path = 'alert_ips.json'
+    try:
+        with open(json_file_path, 'r') as json_file:
+            data = json.load(json_file)
+    except FileNotFoundError:
+        data = []
+
+    # Add the new IP and current time to the data
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    new_entry = {'ip': ip, 'time': timestamp}
+    data.append(new_entry)
+
+    # Save the updated data to the JSON file
+    with open(json_file_path, 'w') as json_file:
+        json.dump(data, json_file, indent=2)
+        print(f"Alert IP {ip} saved with timestamp {timestamp} to {json_file_path}")
+
 
 # Define parameters
 time_threshold = 30 #30 seconds
-threshold = 100
+threshold = 40
 
 anomalous_ips = set()
 
@@ -47,7 +67,18 @@ def extract_packet_data(packet):
         elif SCTP in packet:
             protocol = "SCTP"
             src_port = packet[SCTP].sport
-            dst_port = packet[SCTP].dport   
+            dst_port = packet[SCTP].dport
+
+        elif ICMP in packet:
+            protocol = "ICMP"
+            # ICMP does not have source and destination ports, so setting them to None
+            src_port = None
+            dst_port = None
+        else:
+            # Handle other protocols if needed
+            protocol = "Unknown"
+            src_port = None
+            dst_port = None   
 
         timestamp = get_time()
 
@@ -62,56 +93,53 @@ def extract_packet_data(packet):
     
     except Exception as e:
         print(f"Error extracting packet data: {e}")
-tmp = 0
-def process_packet(packet):
-    global tmp
-    
-    # tmp+=1
 
+def process_packet(packet):
+    
     ip_incoming_flows_count = [{}]
     ip_outgoing_flows_count = [{}]
 
     # print(len(ip_incoming_flows_count))
     # print(len(ip_outgoing_flows_count))
 
+
     # Process flow-level data
     packet = extract_packet_data(packet)
+
+    pkt_src_ip = packet['src_ip']
+    if pkt_src_ip in anomalous_ips:
+        return
+    
     packets.append(packet)
 
-
-    # tmp+=1
-    # print("tmp >>> ",tmp)
     
     # Check if packet's entry is already in the packets list and if the time difference is less than 30 seconds
     current_time = get_time()
     # print(packet['timestamp'])
     # print(current_time)
     # print((current_time - packet['timestamp']))
-    print(time_threshold)
-    time_threshold_packets = [pkt for pkt in packets if pkt['src_ip'] == packet['src_ip'] and 
+    # print(time_threshold)
+
+    time_threshold_packets = [pkt for pkt in packets if (pkt['src_ip'] == pkt_src_ip or pkt['dst_ip'] == pkt_src_ip) and 
                          (current_time - pkt['timestamp']) < time_threshold]
+
     # print(len(matching_packets))
     # return
 
     if time_threshold_packets:
         for pkt in time_threshold_packets:
+            # print(pkt)
             # Check if both source and destination IPs start with "192.168.137."
-            if pkt['src_ip'].startswith("192.168.137.") and pkt['dst_ip'].startswith("192.168.137."):
+            # if pkt['src_ip'].startswith("192.168.137.") and pkt['dst_ip'].startswith("192.168.137."):
+            if pkt['protocol'] not in ["TCP","UDP","SCTP","ICMP"]:
                 pass
             
-            if pkt['src_ip'] == packet['src_ip']:
+            if pkt['src_ip'] == pkt_src_ip:
                 ip_outgoing_flows_count.append(packet)
             
-            if pkt['dst_ip'] == packet['src_ip']:
+            else:
+                # pkt['dst_ip'] == packet['src_ip']:
                 ip_incoming_flows_count.append(packet)
-
-        # elif packet['dst_ip'].startswith("192.168.137."):
-        #         # packet.flow = "incoming"
-        #     incoming_flows.append(packet)
-
-        # elif packet['src_ip'].startswith("192.168.137."):
-        #     # packet.flow = "outgoing"
-        #     outgoing_flows.append(packet)
 
     ratio = 0
     if len(ip_incoming_flows_count) >= len(ip_outgoing_flows_count):
@@ -122,30 +150,80 @@ def process_packet(packet):
 
 
     if ratio > threshold:
-        print("alert IP : ",packet['src_ip'])
+        anomly_ip = packet['src_ip']
+        anomalous_ips.add(anomly_ip)
+        update_alert_ips(anomly_ip)
+        print("alert IP : ",anomly_ip)
 
-
-    # print(tmp)
-    print(packet)
+    
     print("ip_outgoing_flows_count >>> ",len(ip_outgoing_flows_count))
     print("ip_incoming_flows_count >>> ",len(ip_incoming_flows_count))
     print("----------------------------------------------------------")
+
+    # Get CPU and memory usage
+    # cpu_usage = psutil.cpu_percent(interval=1)
+    # memory_usage = psutil.virtual_memory().percent
+
+    # # Print the usage
+    # print(f"CPU Usage: {cpu_usage}% | Memory Usage: {memory_usage}%")
+    # print(tmp)
+    # print(packet['src_ip'])
+
 if __name__ == "__main__":
 
+    # Record the start time
+    start_time = time.time()
 
     # Replace 'pcap_file' with the path to your pcap file
-    pcap_file = '/home/khattak01/Desktop/thesis/tests/packets-500.pcap'
+    # pcap_file = '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic3.pcap'
+    # pcap_file = '/home/khattak01/Desktop/thesis/dataset/scans-traffic/filtered-traffic/window-traffic/simple-scans-modified/filtered_nmap_top-ports-tcp-connect.pcap'
 
-    packets_list = []
+    files = ['/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic.pcap',
+             '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap',
+             '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic2.pcap',
+             '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic3.pcap']
 
-    # Open the pcap file using PcapReader
-    with PcapReader(pcap_file) as pcap_reader:
-        # Loop through packets
-        for packet in pcap_reader:
-            process_packet(packet)
-            # time.sleep(1)
+    files =  ['/home/khattak01/Desktop/thesis/tests/packets-10000-1.pcap',
+              '/home/khattak01/Desktop/thesis/tests/packets-10000-2.pcap',
+              '/home/khattak01/Desktop/thesis/tests/packets-10000-3.pcap',
+              '/home/khattak01/Desktop/thesis/tests/packets-10000-4.pcap']
+    
+    # files = ["dataset/scans-traffic/filtered-traffic/ubuntu-traffic/evasion-technique-modified-traffic/slow-scan/filtered_slow-scan-1000ports-ramdom-pkts(20-30)-radom-delay1-10s.pcap"]
+    
+    for file in files:
+        # Open the pcap file using PcapReader
+        current_pkt_time = 0
+        prev_pkt_time = 0
+        time_taken_by_process = 0
+        with PcapReader(file) as pcap_reader:
+            # Loop through packets
+            for packet in pcap_reader:
+                prev_pkt_time = current_pkt_time
+                current_pkt_time = packet.time
+                time_diff = current_pkt_time - prev_pkt_time - time_taken_by_process
+                      
+                # Ensure time_diff is non-negative
+                time_diff = max(0, time_diff)
+                # print(time_diff)
+                # Check if prev_pkt_time is not zero before sleeping
+                if prev_pkt_time != 0:
+                    time.sleep(float(time_diff))
+                        # Measure the time taken by process_packet
+                start_time_p = time.time()
+                process_packet(packet)
+                end_time_p = time.time()
 
-            
-            # packets_list.append(packet)
-    # print(packets_list[2])
+                # Calculate the time taken by process_packet
+                time_taken_by_process = end_time_p - start_time_p
+                # process_packet(packet)
+
+    # Record the end time
+    end_time = time.time()
+    # Calculate the time taken
+    time_taken = end_time - start_time
+
+    print(f"Time taken: {time_taken} seconds") 
+
+
+        
     

@@ -7,9 +7,7 @@ packets = []
 
 def extract_packet_data(packet):
     try:
-
         src_ip = dst_ip = src_port = dst_port = ""
-
         # packet.show()
 
         if IP in packet:
@@ -26,14 +24,11 @@ def extract_packet_data(packet):
             src_port = packet[SCTP].sport
             dst_port = packet[SCTP].dport
 
-        # timestamp = str(packet.time)
-
         return {
             "src_ip": src_ip,
             "dst_ip": dst_ip,
             "src_port": src_port,
             "dst_port": dst_port,
-            # "timestamp": timestamp,
         }
     except Exception as e:
         print(f"Error extracting packet data: {e}")
@@ -138,33 +133,38 @@ def check_area(ppi, spd):
     # None of the defined areas
     return "Undefined area"
     
+def process_packet(packet):
+    packet = extract_packet_data(packet)
+    packets.append(packet)
+
+    ppi = calculate_ppi_for_ip(packets, packet['src_ip'])
+    sdp = calculate_spd_for_ip(packets,packet['src_ip'])
+
+    print(ppi)        
+    print(sdp)        
+    print(packet)
+    # print(len(packets))
+    #f rom paper, page 17 -> section results:5 -> 5.1 -> para 1
+    # We defined that the red area is 4.0 ≤ PPI, 4.0 ≤ SPD, the green area is PPI ≤ −4.0, 4.0 ≤ SPD, and the yellow area is 4.0 ≤ PPI, SPD ≤ 2.0.
+    res = check_area(ppi,sdp)
+    if res=="Red area" or res=="Green area":
+        print("Alert >>> ", packet['src_ip'])
+        
+    print(res)
+    print('---------------------------------------------------')
+
 if __name__=="__main__":
 
     # print(check_area(0.31,3))
     # Replace 'pcap_file' with the path to your pcap file
-    pcap_file = '/home/khattak01/Desktop/thesis/tests/packets-500.pcap'
-
+    pcap_file = '/home/khattak01/Desktop/thesis/dataset/scans-traffic/filtered-traffic/window-traffic/simple-scans-modified/filtered_nmap_top-ports-tcp-connect.pcap'
 
     # Open the pcap file using PcapReader
     with PcapReader(pcap_file) as pcap_reader:
         # Loop through packets
         for packet in pcap_reader:
+            process_packet(packet)
 
-            packet = extract_packet_data(packet)
-            packets.append(packet)
-
-            ppi = calculate_ppi_for_ip(packets, packet['src_ip'])
-            sdp = calculate_spd_for_ip(packets,packet['src_ip'])
-
-            print(ppi)        
-            print(sdp)        
-            print(packet)
-            print(len(packets))
-            #f rom paper, page 17 -> section results:5 -> 5.1 -> para 1
-            # We defined that the red area is 4.0 ≤ PPI, 4.0 ≤ SPD, the green area is PPI ≤ −4.0, 4.0 ≤ SPD, and the yellow area is 4.0 ≤ PPI, SPD ≤ 2.0.
-            res = check_area(ppi,sdp)
-            print(res)
-            print('---------------------------------------------------')
 
         # tmp = set()
         # for pkt in packets:
