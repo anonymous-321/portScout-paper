@@ -45,6 +45,8 @@ anomalous_ips = set()
 
 packets = []
 
+pkt_proccesd = 0
+
 # Define the format_packet_data function
 def extract_packet_data(packet):
     try:
@@ -96,6 +98,9 @@ def extract_packet_data(packet):
 
 def process_packet(packet):
     
+    global pkt_proccesd
+    pkt_proccesd = pkt_proccesd + 1
+
     ip_incoming_flows_count = [{}]
     ip_outgoing_flows_count = [{}]
 
@@ -155,10 +160,13 @@ def process_packet(packet):
         update_alert_ips(anomly_ip)
         print("alert IP : ",anomly_ip)
 
+
+    if pkt_proccesd % 10000 == 0:
+        print("pkt_proccesd >>> ",pkt_proccesd)
     
-    print("ip_outgoing_flows_count >>> ",len(ip_outgoing_flows_count))
-    print("ip_incoming_flows_count >>> ",len(ip_incoming_flows_count))
-    print("----------------------------------------------------------")
+    # print("ip_outgoing_flows_count >>> ",len(ip_outgoing_flows_count))
+    # print("ip_incoming_flows_count >>> ",len(ip_incoming_flows_count))
+        print("----------------------------------------------------------")
 
     # Get CPU and memory usage
     # cpu_usage = psutil.cpu_percent(interval=1)
@@ -173,7 +181,7 @@ if __name__ == "__main__":
 
     # Record the start time
     start_time = time.time()
-
+    print("Program start time >>> ",datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     # Replace 'pcap_file' with the path to your pcap file
     # pcap_file = '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic3.pcap'
     # pcap_file = '/home/khattak01/Desktop/thesis/dataset/scans-traffic/filtered-traffic/window-traffic/simple-scans-modified/filtered_nmap_top-ports-tcp-connect.pcap'
@@ -183,10 +191,10 @@ if __name__ == "__main__":
              '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic2.pcap',
              '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic3.pcap']
 
-    files =  ['/home/khattak01/Desktop/thesis/tests/packets-10000-1.pcap',
-              '/home/khattak01/Desktop/thesis/tests/packets-10000-2.pcap',
-              '/home/khattak01/Desktop/thesis/tests/packets-10000-3.pcap',
-              '/home/khattak01/Desktop/thesis/tests/packets-10000-4.pcap']
+    # files =  ['/home/khattak01/Desktop/thesis/tests/packets-10000-1.pcap',
+    #           '/home/khattak01/Desktop/thesis/tests/packets-10000-2.pcap',
+    #           '/home/khattak01/Desktop/thesis/tests/packets-10000-3.pcap',
+    #           '/home/khattak01/Desktop/thesis/tests/packets-10000-4.pcap']
     
     # files = ["dataset/scans-traffic/filtered-traffic/ubuntu-traffic/evasion-technique-modified-traffic/slow-scan/filtered_slow-scan-1000ports-ramdom-pkts(20-30)-radom-delay1-10s.pcap"]
     
