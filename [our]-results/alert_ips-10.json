@@ -1,0 +1,32 @@
+[
+  {
+    "ip": "230.231.201.105",
+    "time": "2023-11-27 12:03:25",
+    "file": "/home/khattak01/Desktop/thesis/dataset/scans-traffic/filtered-traffic/window-traffic/simple-scans-modified/filtered_nmap_top-ports-sctp.pcap"
+  },
+  {
+    "ip": "175.127.9.20",
+    "time": "2023-11-27 12:04:20",
+    "file": "/home/khattak01/Desktop/thesis/dataset/scans-traffic/filtered-traffic/window-traffic/simple-scans-modified/filtered_top-ports_sctp.pcap"
+  },
+  {
+    "ip": "253.157.25.85",
+    "time": "2023-11-27 12:04:54",
+    "file": "/home/khattak01/Desktop/thesis/dataset/scans-traffic/filtered-traffic/window-traffic/simple-scans-modified/filtered_ports-1000-6000_sctp.pcap"
+  },
+  {
+    "ip": "120.244.38.129",
+    "time": "2023-11-27 12:05:58",
+    "file": "/home/khattak01/Desktop/thesis/dataset/scans-traffic/filtered-traffic/window-traffic/simple-scans-modified/filtered_nmap_top-ports-tcp-ack.pcap"
+  },
+  {
+    "ip": "169.210.249.78",
+    "time": "2023-11-27 12:06:29",
+    "file": "/home/khattak01/Desktop/thesis/dataset/scans-traffic/filtered-traffic/window-traffic/simple-scans-modified/filtered_top-ports_tcp-ack.pcap"
+  },
+  {
+    "ip": "81.78.201.127",
+    "time": "2023-11-27 12:07:15",
+    "file": "/home/khattak01/Desktop/thesis/dataset/scans-traffic/filtered-traffic/window-traffic/simple-scans-modified/filtered_ports-1000-6000_tcp-ack.pcap"
+  }
+]

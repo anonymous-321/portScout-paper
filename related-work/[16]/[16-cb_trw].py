@@ -1,7 +1,7 @@
 from scapy.all import PcapReader
 from scapy.all import *
 
-THRESHOLD = 50
+THRESHOLD = 40
 tracker = []
 
 # Define the format_packet_data function

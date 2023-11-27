@@ -1,0 +1,91 @@
+
+[without any method - normal processing time in my setup]:
+50000 pkts processed time  : 9.0832 seconds
+
+100000 pkts processed time : 15.9904 seconds
+
+150000 pkts processed time : 24.2123 seconds
+
+200000 pkts processed time : 31.9452 seconds
+
+250000 pkts processed time : 47.8931 seconds
+
+
+----------------------------------------------------
+
+[1]:
+50000 pkts processed time  : 137.3018 seconds
+
+100000 pkts processed time : 597.1455 seconds
+
+150000 pkts processed time : 1365.7705 seconds
+
+200000 pkts processed time : 2353.5158 seconds
+
+250000 pkts processed time : 4082.9501 seconds
+
+
+----------------------------------------------------
+
+[6]:
+50000 pkts processed time  : 234.1522 seconds 
+
+100000 pkts processed time : 1196.9813 seconds
+
+150000 pkts processed time : 2726.4754 seconds
+
+200000 pkts processed time : 5086.2100 seconds
+
+250000 pkts processed time : 7800.4534 seconds
+
+----------------------------------------------------
+
+[16-cb_trw]:
+50000 pkts processed time  : 11.0899 seconds
+
+100000 pkts processed time : 20.0290 seconds
+
+150000 pkts processed time : 29.6610 seconds
+
+200000 pkts processed time : 38.3725 seconds
+
+250000 pkts processed time : 57.4278 seconds
+
+----------------------------------------------------
+
+[16-port_bingo]:
+50000 pkts processed time  : 11.6368 seconds
+
+100000 pkts processed time : 23.0636 seconds
+
+150000 pkts processed time : 34.7452 seconds
+
+200000 pkts processed time : 48.1560 seconds
+
+250000 pkts processed time : 62.5357 seconds
+
+----------------------------------------------------
+
+[16-rate_limiting]:
+50000 pkts processed time  : 13.0859 seconds
+
+100000 pkts processed time : 23.1717 seconds
+
+150000 pkts processed time : 34.1242 seconds
+
+200000 pkts processed time : 44.9143 seconds
+
+250000 pkts processed time : 64.3779 seconds
+
+----------------------------------------------------
+
+[ours]:
+50000 pkts processed time  :  11.8520 seconds
+
+100000 pkts processed time :  24.0106 seconds
+
+150000 pkts processed time :  36.9896 seconds
+
+200000 pkts processed time :  49.2341 seconds
+
+250000 pkts processed time :  61.6224 seconds

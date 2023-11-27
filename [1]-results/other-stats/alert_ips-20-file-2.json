@@ -1,0 +1,302 @@
+[
+  {
+    "ip": "23.78.206.51",
+    "time": "2023-11-20 11:52:10",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "",
+    "time": "2023-11-20 11:52:14",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "192.168.137.253",
+    "time": "2023-11-20 12:04:25",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "192.168.137.148",
+    "time": "2023-11-20 12:14:27",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "13.225.189.112",
+    "time": "2023-11-20 12:16:54",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "192.168.137.172",
+    "time": "2023-11-20 12:16:58",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "54.209.44.8",
+    "time": "2023-11-20 12:25:18",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "35.175.71.102",
+    "time": "2023-11-20 12:28:35",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "13.225.196.108",
+    "time": "2023-11-20 12:47:55",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "199.232.37.16",
+    "time": "2023-11-20 13:21:51",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "13.225.189.64",
+    "time": "2023-11-20 13:26:01",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "74.125.0.107",
+    "time": "2023-11-20 13:33:08",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "192.168.137.207",
+    "time": "2023-11-20 13:33:08",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "192.168.137.154",
+    "time": "2023-11-20 13:34:27",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "172.217.1.10",
+    "time": "2023-11-20 13:35:52",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "3.234.165.228",
+    "time": "2023-11-20 13:40:28",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "142.251.41.74",
+    "time": "2023-11-20 13:46:22",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "142.251.33.170",
+    "time": "2023-11-20 13:56:55",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "172.217.165.10",
+    "time": "2023-11-20 14:07:25",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "45.57.90.1",
+    "time": "2023-11-20 14:16:54",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "72.44.47.201",
+    "time": "2023-11-20 14:16:58",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "54.209.208.36",
+    "time": "2023-11-20 14:17:00",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "54.167.177.211",
+    "time": "2023-11-20 14:21:37",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "54.171.25.87",
+    "time": "2023-11-20 14:28:04",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "108.138.125.109",
+    "time": "2023-11-20 14:30:39",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "108.138.125.225",
+    "time": "2023-11-20 14:30:40",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "142.251.41.42",
+    "time": "2023-11-20 14:39:14",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "3.224.166.115",
+    "time": "2023-11-20 14:43:55",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "192.168.137.83",
+    "time": "2023-11-20 15:01:26",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "192.168.137.58",
+    "time": "2023-11-20 15:01:47",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "104.104.108.45",
+    "time": "2023-11-20 15:03:54",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "176.32.99.246",
+    "time": "2023-11-20 15:08:43",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "52.70.101.206",
+    "time": "2023-11-20 15:27:03",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "3.226.196.104",
+    "time": "2023-11-20 15:27:04",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "3.217.147.217",
+    "time": "2023-11-20 15:28:05",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "151.101.1.16",
+    "time": "2023-11-20 15:28:12",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "54.230.49.76",
+    "time": "2023-11-20 15:28:12",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "3.220.182.54",
+    "time": "2023-11-20 15:36:55",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "54.74.123.186",
+    "time": "2023-11-20 16:35:12",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "142.251.32.74",
+    "time": "2023-11-20 17:07:21",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "54.231.169.193",
+    "time": "2023-11-20 17:11:26",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "34.192.154.181",
+    "time": "2023-11-20 17:22:34",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "13.35.102.198",
+    "time": "2023-11-20 17:27:54",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "44.199.80.228",
+    "time": "2023-11-20 17:47:13",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "54.188.219.38",
+    "time": "2023-11-20 18:14:07",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "52.38.159.70",
+    "time": "2023-11-20 18:14:10",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "104.102.99.210",
+    "time": "2023-11-20 18:14:11",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "54.78.125.193",
+    "time": "2023-11-20 18:41:57",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "192.168.137.175",
+    "time": "2023-11-20 20:04:36",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "54.72.109.224",
+    "time": "2023-11-20 20:04:49",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "54.216.105.92",
+    "time": "2023-11-20 20:05:41",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "52.30.127.62",
+    "time": "2023-11-20 20:05:51",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "52.16.172.3",
+    "time": "2023-11-20 20:05:55",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "54.78.61.15",
+    "time": "2023-11-20 20:07:55",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "99.80.177.237",
+    "time": "2023-11-20 20:08:51",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "18.200.66.16",
+    "time": "2023-11-20 20:10:39",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "54.216.235.127",
+    "time": "2023-11-20 20:11:06",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "54.154.36.101",
+    "time": "2023-11-20 20:11:21",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "52.19.99.181",
+    "time": "2023-11-20 20:13:33",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  },
+  {
+    "ip": "52.213.218.83",
+    "time": "2023-11-20 20:13:34",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  }
+]

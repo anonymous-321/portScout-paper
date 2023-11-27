@@ -3,9 +3,8 @@ from scapy.all import *
 
 import datetime
 import json
-import os
-import psutil
-import threading
+
+current_file_name = ""
 
 def format_time(timestamp):
   # Convert the timestamp to a datetime object
@@ -19,7 +18,7 @@ def get_time():
 
 def update_alert_ips(ip):
     # Load existing data from the JSON file if it exists
-    json_file_path = 'alert_ips.json'
+    json_file_path = 'alert_ips-40-files-3-4.json'
     try:
         with open(json_file_path, 'r') as json_file:
             data = json.load(json_file)
@@ -28,7 +27,7 @@ def update_alert_ips(ip):
 
     # Add the new IP and current time to the data
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    new_entry = {'ip': ip, 'time': timestamp}
+    new_entry = {'ip': ip, 'time': timestamp,"file":current_file_name}
     data.append(new_entry)
 
     # Save the updated data to the JSON file
@@ -99,7 +98,9 @@ def extract_packet_data(packet):
 def process_packet(packet):
     
     global pkt_proccesd
+    # global current_file_name
     pkt_proccesd = pkt_proccesd + 1
+    global packets
 
     ip_incoming_flows_count = [{}]
     ip_outgoing_flows_count = [{}]
@@ -124,9 +125,8 @@ def process_packet(packet):
     # print(current_time)
     # print((current_time - packet['timestamp']))
     # print(time_threshold)
-
-    time_threshold_packets = [pkt for pkt in packets if (pkt['src_ip'] == pkt_src_ip or pkt['dst_ip'] == pkt_src_ip) and 
-                         (current_time - pkt['timestamp']) < time_threshold]
+    packets = [pkt for pkt in packets if (current_time - pkt['timestamp']) < time_threshold]
+    time_threshold_packets = [pkt for pkt in packets if (pkt['src_ip'] == pkt_src_ip or pkt['dst_ip'] == pkt_src_ip)]
 
     # print(len(matching_packets))
     # return
@@ -155,18 +155,20 @@ def process_packet(packet):
 
 
     if ratio > threshold:
+
         anomly_ip = packet['src_ip']
         anomalous_ips.add(anomly_ip)
         update_alert_ips(anomly_ip)
         print("alert IP : ",anomly_ip)
+        # packets = []
 
 
     if pkt_proccesd % 10000 == 0:
-        print("pkt_proccesd >>> ",pkt_proccesd)
+        print("pkt_proccesed >>> ",pkt_proccesd)
     
     # print("ip_outgoing_flows_count >>> ",len(ip_outgoing_flows_count))
     # print("ip_incoming_flows_count >>> ",len(ip_incoming_flows_count))
-        print("----------------------------------------------------------")
+    # print("----------------------------------------------------------")
 
     # Get CPU and memory usage
     # cpu_usage = psutil.cpu_percent(interval=1)
@@ -177,28 +179,39 @@ def process_packet(packet):
     # print(tmp)
     # print(packet['src_ip'])
 
+from scans_traffic import files
 if __name__ == "__main__":
 
-    # Record the start time
-    start_time = time.time()
     print("Program start time >>> ",datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     # Replace 'pcap_file' with the path to your pcap file
     # pcap_file = '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic3.pcap'
     # pcap_file = '/home/khattak01/Desktop/thesis/dataset/scans-traffic/filtered-traffic/window-traffic/simple-scans-modified/filtered_nmap_top-ports-tcp-connect.pcap'
 
-    files = ['/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic.pcap',
-             '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap',
-             '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic2.pcap',
-             '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic3.pcap']
+    # files = ['/home/khattak01/Desktop/thesis/dataset/BenignTraffic/1500000-packets/BenignTraffic-packets-200000.pcap']
+            #  '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap',
+            #  '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic2.pcap',
+            #  '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic3.pcap']
 
-    files =  ['/home/khattak01/Desktop/thesis/tests/packets-10000-1.pcap',
-              '/home/khattak01/Desktop/thesis/tests/packets-10000-2.pcap',
-              '/home/khattak01/Desktop/thesis/tests/packets-10000-3.pcap',
-              '/home/khattak01/Desktop/thesis/tests/packets-10000-4.pcap']
+    # files =  ['/home/khattak01/Desktop/thesis/tests/packets-10000-1.pcap',
+    #           '/home/khattak01/Desktop/thesis/tests/packets-10000-2.pcap',
+    #           '/home/khattak01/Desktop/thesis/tests/packets-10000-3.pcap',
+    #           '/home/khattak01/Desktop/thesis/tests/packets-10000-4.pcap']
     
     # files = ["dataset/scans-traffic/filtered-traffic/ubuntu-traffic/evasion-technique-modified-traffic/slow-scan/filtered_slow-scan-1000ports-ramdom-pkts(20-30)-radom-delay1-10s.pcap"]
     
+    files = [
+        #'/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic.pcap',
+        #'/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap',
+        '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic2.pcap',
+        '/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic3.pcap'
+        ]
+
+    # Record the start time
+    start_time = time.time()
+
     for file in files:
+        packets = []
+        current_file_name = file
         # Open the pcap file using PcapReader
         current_pkt_time = 0
         prev_pkt_time = 0
@@ -223,7 +236,6 @@ if __name__ == "__main__":
 
                 # Calculate the time taken by process_packet
                 time_taken_by_process = end_time_p - start_time_p
-                # process_packet(packet)
 
     # Record the end time
     end_time = time.time()

@@ -1,0 +1,32 @@
+[
+  {
+    "ip": "157.249.81.141",
+    "time": "2023-11-22 22:26:34",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic.pcap"
+  },
+  {
+    "ip": "52.5.226.67",
+    "time": "2023-11-23 01:12:53",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic.pcap"
+  },
+  {
+    "ip": "40.80.154.151",
+    "time": "2023-11-23 02:02:05",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic.pcap"
+  },
+  {
+    "ip": "173.198.192.101",
+    "time": "2023-11-23 02:20:01",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic.pcap"
+  },
+  {
+    "ip": "23.43.243.168",
+    "time": "2023-11-23 07:22:37",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic.pcap"
+  },
+  {
+    "ip": "173.198.192.103",
+    "time": "2023-11-23 07:51:53",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic.pcap"
+  }
+]

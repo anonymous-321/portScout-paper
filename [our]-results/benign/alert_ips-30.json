@@ -1,0 +1,12 @@
+[
+  {
+    "ip": "157.249.81.141",
+    "time": "2023-11-25 09:53:58",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic.pcap"
+  },
+  {
+    "ip": "8.8.8.8",
+    "time": "2023-11-26 01:42:28",
+    "file": "/home/khattak01/Desktop/thesis/dataset/BenignTraffic/BenignTraffic1.pcap"
+  }
+]
