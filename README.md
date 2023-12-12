@@ -24,3 +24,7 @@ The system has one dependency, which can be installed using the following comman
 
 ```bash
 pip install scapy
+````
+
+
+Feel free to explore the folders and utilize the provided resources for a better understanding of our research and to reproduce the results. If you have any questions or encounter issues, please don't hesitate to reach out.
