@@ -18,7 +18,7 @@ Welcome to the official repository for the source code, dataset, and experimenta
 
 - **tests:** Code files used for individual code testing.
 
-- **iot_PortScout:** Contains Python source code for deploying PortScout on Raspberry Pi for real-time environment evaluation.
+- **iot_portScout:** Contains Python source code for deploying PortScout on Raspberry Pi for real-time environment evaluation.
 
 ## Dependencies
 
