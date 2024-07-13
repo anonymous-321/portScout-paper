@@ -4,19 +4,21 @@ Welcome to the official repository for the source code, dataset, and experimenta
 
 ## Contents
 
-- **dataset:** This folder includes all the crucial data used in the evaluation, along with the dataset (scanning attack) created for experiments in pcap file format. The dataset folder also contains Python scripts used for data operations and attribute counting.
+- **dataset:** Contains crucial data used in the evaluation, including the dataset (scanning attack) in pcap file format. Python scripts for data operations and attribute counting are also included.
 
-- **related-work:** Explore this folder to find the five methods discussed in the paper, which we use for comparison. The experimental code is available, allowing you to observe how each method was executed and how the system handled it.
+- **related-work:** Provides implementations of five methods discussed in the paper for comparison. Explore the experimental code to observe each method's execution and system handling.
 
-- **results:** In this folder, you'll find different configurations of the methods we utilized, along with the experimental results for each configuration on every dataset tested. Results are stored in JSON files.
+- **results:** Includes different method configurations and their experimental results on tested datasets, stored in JSON files.
 
-- **scanning-scripts:** The python scripts used for attack generation are housed in this folder. You can examine the details of every scan in these files.
+- **scanning-scripts:** Python scripts used for generating attack scenarios.
 
-- **traffic-filtration:** This folder contains Python scripts used to filter and modify the attack dataset according to our scenario. If you wish to use our dataset, these scripts can be employed to modify data according to your needs.
+- **traffic-filtration:** Python scripts for filtering and modifying the attack dataset based on specific scenarios.
 
-- **util:** Basic Python scripts for various repetitive tasks are stored in this folder.
+- **util:** Basic Python scripts for various repetitive tasks.
 
-- **tests:** Find Python code files in this folder that we used for testing parts of the code individually.
+- **tests:** Code files used for individual code testing.
+
+- **iot_PortScout:** Contains Python source code for deploying PortScout on Raspberry Pi for real-time environment evaluation.
 
 ## Dependencies
 
@@ -26,5 +28,4 @@ The system has one dependency, which can be installed using the following comman
 pip install scapy
 ````
 
-
-Feel free to explore the folders and utilize the provided resources for a better understanding of our research and to reproduce the results. If you have any questions or encounter issues, please don't hesitate to reach out.
+Feel free to explore the folders and utilize the provided resources to better understand our research and reproduce the results. If you have any questions or encounter issues, please don't hesitate to reach out.
