@@ -1,4 +1,4 @@
-# PortScout: A Novel Lightweight Approach to Detecting Port Scanning and Evasion Attacks
+# PortScout: A Novel Lightweight Approach to Detect Port Scanning Evasion Attacks
 
 Welcome to the official repository for the source code, dataset, and experimental setup of our research paper titled "PortScout: A Novel Lightweight Approach to Detecting Port Scanning and Evasion Attacks." This repository contains all the essential components for reproducing our experiments and understanding the methodology presented in the paper.
 
